@@ -3,7 +3,6 @@ from typing import Union
 import pygame
 import numpy as np
 from pygame import Surface, SurfaceType
-from pygame.locals import *
 
 col_about_to_die = (200, 200, 225)
 col_alive = (255, 255, 215)
@@ -54,21 +53,21 @@ def init(dimx, dimy):
                         [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
     eater1 = np.array([[1, 1, 0, 0], [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 0, 1]]);
-    # pos5 = (64, 70)
-    # pos = (20, 95)
+    #pos5 = (64, 70)
+    #pos = (20, 95)
     pattern_rot1 = np.rot90(eater, k=-1)
     pattern_rot2 = np.flip(pattern_rot1, axis=-1)
     disturber1 = np.rot90(pattern, k=-1)
-    # cells[pos[0]:pos[0] + disturber1.shape[0], pos[1]:pos[1] + disturber1.shape[1]] = disturber1
+    #cells[pos[0]:pos[0] + disturber1.shape[0], pos[1]:pos[1] + disturber1.shape[1]] = disturber1
     pos1 = (4, 15)
-    cells[pos1[0]:pos1[0] + eater.shape[0], pos1[1]:pos1[1] + eater.shape[1]] = eater
+    cells[pos1[0]:pos1[0] + pattern.shape[0], pos1[1]:pos1[1] + pattern.shape[1]] = pattern
     pos2 = (5, 61)
     pos3 = (20, 10)
     cells[pos3[0]:pos3[0] + pattern_rot2.shape[0], pos3[1]:pos3[1] + pattern_rot2.shape[1]] = pattern_rot2
-    eater_flip = np.flip(eater, axis=1)
+    eater_flip = np.flip(pattern, axis=1)
     cells[pos2[0]:pos2[0] + eater_flip.shape[0], pos2[1]:pos2[1] + eater_flip.shape[1]] = eater_flip
-    # eater1_flip = np.flip(eater1, axis=1)
-    # cells[pos5[0]:pos5[0] + eater1_flip.shape[0], pos5[1]:pos5[1] + eater1_flip.shape[1]] = eater1_flip
+    #eater1_flip = np.flip(eater1, axis=1)
+    #cells[pos5[0]:pos5[0] + eater1_flip.shape[0], pos5[1]:pos5[1] + eater1_flip.shape[1]] = eater1_flip
 
     return cells
 

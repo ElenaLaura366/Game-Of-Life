@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import *
 import negat1
 import negat0
 import si00
@@ -11,7 +10,8 @@ import sau01
 import sau10
 import sau11
 
-class Menu():
+
+class Menu:
     def __init__(self, game):
         self.game = game
         self.mid_w, self.mid_h = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2
@@ -26,6 +26,7 @@ class Menu():
         self.game.window.blit(self.game.display, (0, 0))
         pygame.display.update()
         self.game.reset_keys()
+
 
 class MainMenu(Menu):
     def __init__(self, game):
@@ -52,7 +53,6 @@ class MainMenu(Menu):
             self.game.draw_text("HOW TO PLAY", 20, self.expx, self.expy)
             self.draw_cursor()
             self.blit_screen()
-
 
     def move_cursor(self):
         if self.game.DOWN_KEY:
@@ -103,6 +103,7 @@ class MainMenu(Menu):
                 self.game.curr_menu = self.game.howtoplay
             self.run_display = False
 
+
 class NotMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
@@ -143,6 +144,7 @@ class NotMenu(Menu):
             elif self.state == 'NOT 1':
                 self.controls_menu_active = True
                 negat0.main(120, 90, 6)
+
 
 class AndMenu(Menu):
     def __init__(self, game):
@@ -201,6 +203,7 @@ class AndMenu(Menu):
                 self.controls_menu_active = True
                 si11.main(120, 90, 6)
 
+
 class OrMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
@@ -258,27 +261,28 @@ class OrMenu(Menu):
                 self.controls_menu_active = True
                 sau11.main(120, 90, 6)
 
+
 class ScrollableTextMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
-        self.text = "     Conway's Game of Life is a cellular automaton devised in 1970 by the british mathematician John Horton Conway.\n"\
-                    "     The game is composed of an infinte, two-dimensional grid of squares called cells.\n"\
-                    "     A cell can have one of two states: alive or dead. Each cell interacts with its eight neighbours.\n"\
-                    "There are three rules that dictate what happens to the cell over the course of the next generation:\n"\
-                    "  1. Any live cell with two or three live neighbours survives.\n"\
-                    "  2. Any dead cell with three live neighbours becomes a live cell.\n"\
-                    "  3. All other live cells die in the next generation. Similarly, all other dead cells stay dead\n"\
-                    "     Given this set of rules there are many interesting patterns that arises.\n"\
-                    "For implementing the game of life the following patterns will be used:\n"\
-                    "1. Glider\n"\
-	                "     A glider is a spaceship type of structure. A spaceship has the property that it returns to its original state after a number of generations but in a different position. The glider, also known as the featherweight spaceship, is the smallest, most common and first-discovered spaceship in Game of Life."\
-	                "A property of the gliders is that if they collide at a certain angle they anhilate each other."\
-	                "In this simulation the glider will represent the logic one. When it arrives to a certain point at a given interval it means that the value of the gate is logic one. If it doesn't arrive at that specific point the gate has a zero value."\
-                    "\n2. Gosper Glider Gun\n"\
-	                "     The Gosper gun is the first discovered gun. A gun is a stationary pattern that repeatedly emits spaceships forever."\
-	                "In the context of emulating Logic Gates, this structure is used both as a way to generate input and as a way to block a stream a gliders, by poisitioning a glider at a certain angle."\
-                    "\n3. Eater\n"\
-	                "     The eater is a stationary structure that annhiliate a glider."
+        self.text = "     Conway's Game of Life is a cellular automaton devised in 1970 by the british mathematician John Horton Conway.\n" \
+                    "     The game is composed of an infinte, two-dimensional grid of squares called cells.\n" \
+                    "     A cell can have one of two states: alive or dead. Each cell interacts with its eight neighbours.\n" \
+                    "There are three rules that dictate what happens to the cell over the course of the next generation:\n" \
+                    "  1. Any live cell with two or three live neighbours survives.\n" \
+                    "  2. Any dead cell with three live neighbours becomes a live cell.\n" \
+                    "  3. All other live cells die in the next generation. Similarly, all other dead cells stay dead\n" \
+                    "     Given this set of rules there are many interesting patterns that arises.\n" \
+                    "For implementing the game of life the following patterns will be used:\n" \
+                    "1. Glider\n" \
+                    "     A glider is a spaceship type of structure. A spaceship has the property that it returns to its original state after a number of generations but in a different position. The glider, also known as the featherweight spaceship, is the smallest, most common and first-discovered spaceship in Game of Life." \
+                    "A property of the gliders is that if they collide at a certain angle they anhilate each other." \
+                    "In this simulation the glider will represent the logic one. When it arrives to a certain point at a given interval it means that the value of the gate is logic one. If it doesn't arrive at that specific point the gate has a zero value." \
+                    "\n2. Gosper Glider Gun\n" \
+                    "     The Gosper gun is the first discovered gun. A gun is a stationary pattern that repeatedly emits spaceships forever." \
+                    "In the context of emulating Logic Gates, this structure is used both as a way to generate input and as a way to block a stream a gliders, by poisitioning a glider at a certain angle." \
+                    "\n3. Eater\n" \
+                    "     The eater is a stationary structure that annhiliate a glider."
         self.font = pygame.font.Font(None, 27)
         self.text_rect = pygame.Rect(50, 50, 600, 900)
         self.scroll_speed = 20
@@ -289,7 +293,8 @@ class ScrollableTextMenu(Menu):
             self.game.check_events()
             self.check_input()
             self.game.display.fill((0, 0, 0))
-            self.game.draw_text('EXPLANATIONS', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200 + self.text_rect.y)
+            self.game.draw_text('EXPLANATIONS', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 200 + self.text_rect.y)
             self.draw_text()
             self.blit_screen()
 
@@ -325,14 +330,15 @@ class ScrollableTextMenu(Menu):
         elif self.game.DOWN_KEY:
             self.text_rect.y += self.scroll_speed
 
+
 class HowToPlay(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
-        self.text = "   Press UP and DOWN in order to navigate in the menu.\n"\
-                    "   If you want to select an option from the menu point the arrow to the option and press ENTER.\n"\
-                    "   If you want to learn how to play this game select the HOW TO PLAY section.\n"\
-                    "   If you want to learn about Conway's Game of Life and the patterns used in this game select EXPLANATION.\n"\
-                    "   In order to select a value from the table of truth point the cursor to the option and press ENTER.\n"\
+        self.text = "   Press UP and DOWN in order to navigate in the menu.\n" \
+                    "   If you want to select an option from the menu point the arrow to the option and press ENTER.\n" \
+                    "   If you want to learn how to play this game select the HOW TO PLAY section.\n" \
+                    "   If you want to learn about Conway's Game of Life and the patterns used in this game select EXPLANATION.\n" \
+                    "   In order to select a value from the table of truth point the cursor to the option and press ENTER.\n" \
                     "   In order to go back to the menu from the logic gates simulation press SPACE.\n"
         self.font = pygame.font.Font(None, 27)
         self.text_rect = pygame.Rect(50, 50, 600, 900)
@@ -344,7 +350,8 @@ class HowToPlay(Menu):
             self.game.check_events()
             self.check_input()
             self.game.display.fill((0, 0, 0))
-            self.game.draw_text('HOW TO PLAY', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200 + self.text_rect.y)
+            self.game.draw_text('HOW TO PLAY', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 200 + self.text_rect.y)
             self.draw_text()
             self.blit_screen()
 

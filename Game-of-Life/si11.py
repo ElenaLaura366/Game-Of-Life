@@ -3,7 +3,6 @@ from typing import Union
 import pygame
 import numpy as np
 from pygame import Surface, SurfaceType
-from pygame.locals import *
 
 col_about_to_die = (200, 200, 225)
 col_alive = (255, 255, 215)
@@ -54,21 +53,21 @@ def init(dimx, dimy):
                         [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
     eater1 = np.array([[1, 1, 0, 0], [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 0, 1]]);
-    pos5 = (64,70)
-    pos = (20,95)
-    pattern_rot1 = np.rot90(eater, k=-1)
+    pos5 = (64, 40)
+    # pos = (20, 95)
+    pattern_rot1 = np.rot90(pattern, k=-1)
     pattern_rot2 = np.flip(pattern_rot1, axis=-1)
     disturber1 = np.rot90(pattern, k=-1)
-    cells[pos[0]:pos[0]+disturber1.shape[0], pos[1]:pos[1]+disturber1.shape[1]] = disturber1
-    pos1 = (4,15)
-    cells[pos1[0]:pos1[0]+pattern.shape[0], pos1[1]:pos1[1]+pattern.shape[1]] = pattern
-    pos2 = (5,61)
+    # cells[pos[0]:pos[0] + disturber1.shape[0], pos[1]:pos[1] + disturber1.shape[1]] = disturber1
+    pos1 = (4, 15)
+    cells[pos1[0]:pos1[0] + pattern.shape[0], pos1[1]:pos1[1] + pattern.shape[1]] = pattern
+    pos2 = (5, 61)
     pos3 = (20, 10)
-    cells[pos3[0]:pos3[0]+pattern_rot2.shape[0], pos3[1]:pos3[1]+pattern_rot2.shape[1]] = pattern_rot2
+    cells[pos3[0]:pos3[0] + pattern_rot2.shape[0], pos3[1]:pos3[1] + pattern_rot2.shape[1]] = pattern_rot2
     eater_flip = np.flip(pattern, axis=1)
-    cells[pos2[0]:pos2[0]+eater_flip.shape[0], pos2[1]:pos2[1]+eater_flip.shape[1]] = eater_flip
-    eater1_flip = np.flip(eater1,axis=1)
-    cells[pos5[0]:pos5[0]+eater1_flip.shape[0], pos5[1]:pos5[1]+eater1_flip.shape[1]] = eater1_flip
+    cells[pos2[0]:pos2[0] + eater_flip.shape[0], pos2[1]:pos2[1] + eater_flip.shape[1]] = eater_flip
+    # eater1_flip = np.flip(eater1, axis=1)
+    cells[pos5[0]:pos5[0] + eater1.shape[0], pos5[1]:pos5[1] + eater1.shape[1]] = eater1
 
     return cells
 
@@ -102,33 +101,15 @@ def main(dimx, dimy, cellsize):
         text4 = font.render("U", True, (200, 200, 225))
         text5 = font.render("T", True, (200, 200, 225))
         text7 = font.render("A", True, (200, 200, 225))
-        text1_1 = font.render("D", True, (200, 200, 225))
-        text2_1 = font.render("I", True, (200, 200, 225))
-        text3_1 = font.render("S", True, (200, 200, 225))
-        text4_1 = font.render("T", True, (200, 200, 225))
-        text5_1 = font.render("U", True, (200, 200, 225))
-        text6_1 = font.render("R", True, (200, 200, 225))
-        text7_1 = font.render("B", True, (200, 200, 225))
-        text8_1 = font.render("E", True, (200, 200, 225))
-        text9_1 = font.render("R", True, (200, 200, 225))
         surface.blit(text, (10, 10))
         surface.blit(text6, (500, 10))
-        surface.blit(text10, (400, 415))
+        surface.blit(text10, (220, 420))
         surface.blit(text1, (33, 150))
         surface.blit(text2, (30, 170))
         surface.blit(text3, (30, 190))
         surface.blit(text4, (30, 210))
         surface.blit(text5, (30, 230))
         surface.blit(text7, (30, 250))
-        surface.blit(text1_1, (650, 130))
-        surface.blit(text2_1, (653, 150))
-        surface.blit(text3_1, (650, 170))
-        surface.blit(text4_1, (650, 190))
-        surface.blit(text5_1, (650, 210))
-        surface.blit(text6_1, (650, 230))
-        surface.blit(text7_1, (650, 250))
-        surface.blit(text8_1, (650, 270))
-        surface.blit(text9_1, (650, 290))
 
         pygame.display.update()
 

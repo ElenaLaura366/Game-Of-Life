@@ -3,7 +3,6 @@ from typing import Union
 import pygame
 import numpy as np
 from pygame import Surface, SurfaceType
-from pygame.locals import *
 
 col_about_to_die = (200, 200, 225)
 col_alive = (255, 255, 215)
